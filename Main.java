@@ -12,7 +12,7 @@ public class Main {
         input.close();
         
         letters = scrabble.normalizeCase(letters);
-        System.out.println(scrabble.bestAvailableWord(letters));
+        System.out.println(scrabble.bestAvailableWordList(letters));
 
     }
     

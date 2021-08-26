@@ -77,22 +77,20 @@ public class Scrabble {
     public Integer wordScore(String word) {
         Integer score = 0;
         for (Character c : word.toCharArray()) {
-            // score++;    // TODO no real score computation, just a length of the word
             try {
                 score += charValues.get(c.toString());
             } catch (NullPointerException e) {
-                // missing definition for a given char
-                score += 0;
+                // missing definition for a given char, just ignore it and count as 0
+                // score += 0;
             }
         }
         return score;
     }
 
+    // returns a single best word together with its score and with remaining unused letters
     public WordScoreResult bestAvailableWord(String letters) {
         WordScoreResult ret = new WordScoreResult("", 0, letters);
 
-        //dict.forEach();
-        SEARCH_DICT:
         for (String wordFromDict : dict) {
             StringBuilder letters_copy = new StringBuilder(letters);
             Boolean wordOK = true;
@@ -116,6 +114,25 @@ public class Scrabble {
                 }
             }  
         }
+
+        return ret;
+    }
+
+    public List<WordScoreResult> bestAvailableWordList(String letters) {
+        List<WordScoreResult> ret = new ArrayList<>();
+        Integer totalScore = 0;
+
+        while (true) {    
+            WordScoreResult singleResult = bestAvailableWord(letters);
+            if (singleResult.score() == 0) {
+                break;
+            }
+
+            ret.add(singleResult);
+            
+            totalScore += singleResult.score();
+            letters = singleResult.remainingChars();
+        };
 
         return ret;
     }
