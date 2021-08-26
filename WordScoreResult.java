@@ -21,6 +21,7 @@ public class WordScoreResult {
         return remainingChars;
     }
 
+    @Override
     public String toString() {
         return String.format("%s (score %d, remaining [%s])", word, score, remainingChars);
     }
