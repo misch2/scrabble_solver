@@ -1,3 +1,5 @@
+package Scrabble.src;
+
 import java.util.Scanner;
 
 public class Main {

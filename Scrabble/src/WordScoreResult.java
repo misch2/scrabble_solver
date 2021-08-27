@@ -1,3 +1,5 @@
+package Scrabble.src;
+
 public class WordScoreResult {
     private String word;
     private Integer score;
