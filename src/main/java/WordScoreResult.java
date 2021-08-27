@@ -1,4 +1,4 @@
-package Scrabble.src;
+package main.java;
 
 public class WordScoreResult {
     private String word;

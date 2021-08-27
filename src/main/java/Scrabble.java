@@ -1,12 +1,14 @@
-package Scrabble.src;
+package main.java;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 //import java.io.File;
-import java.io.FileReader;
+//import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.io.InputStreamReader;
 
 public class Scrabble {
     List<String> dict = new ArrayList<>();
@@ -16,12 +18,20 @@ public class Scrabble {
         return text.toUpperCase();
     }
 
+    public void loadAllFromFolder(String foldername) {
+        loadDictionary(String.format("main/resources/wordlist/%s/wordlist.txt", foldername));
+        loadCharValues(String.format("main/resources/wordlist/%s/letter_values.txt", foldername));
+    }
+
+    private InputStream getResourceAsStream(String filename) {
+        return getClass().getClassLoader().getResourceAsStream(filename);
+    }
+
     public void loadDictionary(String filename) {
         System.out.print(String.format("Loading dict from file %s ... ", filename));
 
         try {
-            FileReader fr = new FileReader(filename);
-            BufferedReader br = new BufferedReader(fr);
+            BufferedReader br = new BufferedReader(new InputStreamReader(getResourceAsStream(filename)));
 
             List<String> list = new ArrayList<>();
             int cnt = 0;
@@ -47,8 +57,7 @@ public class Scrabble {
         System.out.print(String.format("Loading char values from file %s ... ", filename));
 
         try {
-            FileReader fr = new FileReader(filename);
-            BufferedReader br = new BufferedReader(fr);
+            BufferedReader br = new BufferedReader(new InputStreamReader(getResourceAsStream(filename)));
 
             HashMap<String, Integer> map = new HashMap<>();
             String line;

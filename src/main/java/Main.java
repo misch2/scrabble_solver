@@ -1,12 +1,11 @@
-package Scrabble.src;
+package main.java;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scrabble scrabble = new Scrabble();
-        scrabble.loadDictionary("czech_wordlist_nodia.txt");
-        scrabble.loadCharValues("czech_value_nodia.txt");
+        scrabble.loadAllFromFolder("cz_nodia");
 
         System.out.println("Which letters do you have?");
         Scanner input = new Scanner(System.in);

@@ -6,16 +6,16 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Current File",
+            "name": "Launch Main",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "main.java.Main",
+            "projectName": "scrabble_4d9d5a6a"
         },
         {
             "type": "java",
-            "name": "Launch Main",
+            "name": "Launch Current File",
             "request": "launch",
-            "mainClass": "Main",
-            "projectName": "scrabble_4d9d5a6a"
+            "mainClass": "${file}"
         }
     ]
 }
