@@ -27,7 +27,7 @@ public class Scrabble {
         return getClass().getClassLoader().getResourceAsStream(filename);
     }
 
-    public void loadDictionary(String filename) {
+    private void loadDictionary(String filename) {
         System.out.print(String.format("Loading dict from file %s ... ", filename));
 
         try {
@@ -53,7 +53,7 @@ public class Scrabble {
         }
     }
 
-    public void loadCharValues(String filename) {
+    private void loadCharValues(String filename) {
         System.out.print(String.format("Loading char values from file %s ... ", filename));
 
         try {
@@ -103,6 +103,10 @@ public class Scrabble {
         WordScoreResult ret = new WordScoreResult("", 0, letters);
 
         for (String wordFromDict : dict) {
+            if (wordFromDict.length() < 2) {
+                continue;   // rules disallow too short words
+            };
+            
             StringBuilder letters_copy = new StringBuilder(letters);
             Boolean wordOK = true;
 
@@ -119,7 +123,7 @@ public class Scrabble {
 
             if (wordOK) { // some of the chars can form a word
                 Integer score = wordScore(wordFromDict);
-                if (score > ret.score()) {
+                if (score > ret.getScore()) {
                     //System.out.println(String.format("Pro kombinaci [%s] mozna [%s], zbyva [%s] (score %d)", letters, wordFromDict, letters_copy, score));
                     ret = new WordScoreResult(wordFromDict, score, letters_copy.toString());
                 }
@@ -135,14 +139,14 @@ public class Scrabble {
 
         while (true) {    
             WordScoreResult singleResult = bestAvailableWord(letters);
-            if (singleResult.score() == 0) {
+            if (singleResult.getScore() == 0) {
                 break;
             }
 
             ret.add(singleResult);
             
-            totalScore += singleResult.score();
-            letters = singleResult.remainingChars();
+            totalScore += singleResult.getScore();
+            letters = singleResult.getRemainingChars();
         };
 
         return ret;

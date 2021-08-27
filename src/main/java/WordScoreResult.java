@@ -11,16 +11,16 @@ public class WordScoreResult {
         this.remainingChars = remainingChars;
     }
 
-    public String word() {
-        return word;
+    public String getWord() {
+        return this.word;
     }
 
-    public Integer score() {
-        return score;
+    public Integer getScore() {
+        return this.score;
     }
 
-    public String remainingChars() {
-        return remainingChars;
+    public String getRemainingChars() {
+        return this.remainingChars;
     }
 
     @Override

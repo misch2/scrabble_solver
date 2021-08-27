@@ -13,6 +13,10 @@ public class Main {
         input.close();
         
         letters = scrabble.normalizeCase(letters);
-        System.out.println(String.format("Best set of words: %s", scrabble.bestAvailableWordList(letters)));
+        System.out.println("Best set of words:");
+        for (WordScoreResult res : scrabble.bestAvailableWordList(letters)) {
+            System.out.println(String.format(" - %s (%d pt)", res.getWord(), res.getScore()));
+        }
+        //String.format("Best set of words: %s", scrabble.bestAvailableWordList(letters)));
     }  
 }
