@@ -1,3 +1,3 @@
 # scrabble_solver
 
-Exercise in Java
+An exercise in Java
