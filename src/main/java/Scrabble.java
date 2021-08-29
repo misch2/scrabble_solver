@@ -19,8 +19,8 @@ public class Scrabble {
     }
 
     public void loadAllFromFolder(String foldername) {
-        loadDictionary(String.format("main/resources/wordlist/%s/wordlist.txt", foldername));
-        loadCharValues(String.format("main/resources/wordlist/%s/letter_values.txt", foldername));
+        loadDictionary(Main.resourcePath + "wordlist/" + foldername + "/wordlist.txt");
+        loadCharValues(Main.resourcePath + "wordlist/" + foldername + "/letter_values.txt");
     }
 
     private InputStream getResourceAsStream(String filename) {

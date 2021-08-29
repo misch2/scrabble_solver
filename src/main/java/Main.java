@@ -11,12 +11,12 @@ import javafx.application.*;
 import javafx.stage.*;
 
 public class Main extends Application {
-    // public constant String resourcePath = "main/resources/";
     private static Scrabble scrabble;
+    public final static String resourcePath = "main/resources/";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main/resources/mainscreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource(resourcePath + "mainscreen.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
