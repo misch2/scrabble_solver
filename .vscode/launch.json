@@ -9,13 +9,8 @@
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "main.java.Main",
-            "projectName": "scrabble_4d9d5a6a"
+            "projectName": "scrabble_4d9d5a6a",
+            "vmArgs": "--module-path ../lib/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
         },
-        {
-            "type": "java",
-            "name": "Launch Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        }
     ]
 }

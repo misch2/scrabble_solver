@@ -6,7 +6,7 @@
     "java.project.referencedLibraries": {
         "include": [
             "lib/**",
-            "src/lib/commons-codec-1.15/commons-codec-1.15.jar"
+            "../lib/javafx-sdk-11.0.2/**"
         ],
         "exclude": [
             "src/**"
