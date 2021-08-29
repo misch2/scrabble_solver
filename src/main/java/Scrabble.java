@@ -106,7 +106,7 @@ public class Scrabble {
             if (wordFromDict.length() < 2) {
                 continue;   // rules disallow too short words
             };
-            
+
             StringBuilder letters_copy = new StringBuilder(letters);
             Boolean wordOK = true;
 

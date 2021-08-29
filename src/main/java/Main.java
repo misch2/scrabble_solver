@@ -1,22 +1,51 @@
 package main.java;
 
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
+import org.apache.commons.codec.binary.Hex;
 
 public class Main {
     public static void main(String[] args) {
-        Scrabble scrabble = new Scrabble();
-        scrabble.loadAllFromFolder("cz_nodia");
+        Locale locale = Locale.forLanguageTag("cs-CZ");
+        System.out.println("locale: " + locale);
 
-        System.out.println("Which letters do you have?");
-        Scanner input = new Scanner(System.in);
-        String letters = input.nextLine();
-        input.close();
-        
-        letters = scrabble.normalizeCase(letters);
-        System.out.println("Best set of words:");
-        for (WordScoreResult res : scrabble.bestAvailableWordList(letters)) {
-            System.out.println(String.format(" - %s (%d pt)", res.getWord(), res.getScore()));
+        try {
+            OutputStreamWriter oswDef = new OutputStreamWriter(System.out);
+            System.out.println("Implicitni kodovani konzole: " + oswDef.getEncoding());
+
+            /* IBM852 je výstupní kódování češtiny v DOSovém okénku */
+            OutputStreamWriter osw = new OutputStreamWriter(System.out, "IBM852");
+            System.out.println("Nastavene kodovani konzole:  " + osw.getEncoding());
+
+            String l = new Scanner(System.in, "IBM852").nextLine();
+            System.out.println("1: len=" + l.length() + ", str=" + Hex.encodeHexString(l.getBytes()));
+
+            l = System.console().readLine();
+            System.out.println("2: len=" + l.length() + ", str=" + Hex.encodeHexString(l.getBytes()));
+
+            Scrabble scrabble = new Scrabble();
+            scrabble.loadAllFromFolder("cz_nodia");
+
+            System.out.println("Which letters do you have?");
+            String letters = new BufferedReader(new InputStreamReader(System.in, "UTF-8")).readLine();
+            System.out.println(letters);
+
+            letters = scrabble.normalizeCase(letters);
+            System.out.println(String.format("Best set of words for a set of [%s]:", letters));
+            List<WordScoreResult> list = scrabble.bestAvailableWordList(letters);
+            if (list.isEmpty()) {
+                System.out.println(" - no solution for this input");
+            } else {
+                for (WordScoreResult res : list) {
+                    System.out.println(String.format(" - %s (%d pt)", res.getWord(), res.getScore()));
+                }
+            }
+            // String.format("Best set of words: %s",
+            // scrabble.bestAvailableWordList(letters)));
+        } catch (
+
+        Exception e) {
+            e.printStackTrace();
         }
-        //String.format("Best set of words: %s", scrabble.bestAvailableWordList(letters)));
-    }  
+    }
 }

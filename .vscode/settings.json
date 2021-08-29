@@ -4,7 +4,12 @@
     ],
     "java.project.outputPath": "target",
     "java.project.referencedLibraries": {
-        "include": ["lib/**"],
-        "exclude": ["src/**"]
+        "include": [
+            "lib/**",
+            "src/lib/commons-codec-1.15/commons-codec-1.15.jar"
+        ],
+        "exclude": [
+            "src/**"
+        ]
     }
 }
