@@ -56,7 +56,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         scrabble = new Scrabble();
-        scrabble.loadAllFromFolder("cz_nodia");
+        scrabble.loadAllFromFolder("cz_dia");
 
         Application.launch(args);
         System.exit(0);
